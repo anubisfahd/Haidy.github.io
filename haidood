@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>21 Reasons Why I Love You</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --berry:#5A1E36;
+    --navy:#0F172A;
+    --gold:#D4AF37;
+    --champagne:#F7E7CE;
+    --black:#0A0A0A;
+    --rose:#B76E79;
+
+    --glass:rgba(255,255,255,0.08);
+    --glass-border:rgba(255,255,255,0.12);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+    radial-gradient(circle at top left, rgba(212,175,55,0.18), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(90,30,54,0.45), transparent 35%),
+    linear-gradient(160deg,var(--black),var(--navy));
+    color:white;
+    overflow-x:hidden;
+    font-family:'Inter',sans-serif;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+    radial-gradient(white 1px, transparent 1px);
+    background-size:120px 120px;
+    opacity:0.08;
+    pointer-events:none;
+}
+
+section{
+    position:relative;
+    padding:120px 8%;
+}
+
+h1,h2,h3{
+    font-family:'Cormorant Garamond',serif;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:800px;
+    height:800px;
+    background:radial-gradient(circle, rgba(212,175,55,0.18), transparent 70%);
+    filter:blur(80px);
+    animation:floatGlow 8s ease-in-out infinite;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:900px;
+}
+
+.hero h1{
+    font-size:clamp(3rem,8vw,7rem);
+    font-weight:600;
+    line-height:1;
+    margin-bottom:25px;
+    color:var(--champagne);
+    text-shadow:0 0 25px rgba(212,175,55,0.15);
+}
+
+.hero p{
+    font-size:1.15rem;
+    max-width:650px;
+    margin:auto;
+    line-height:1.9;
+    opacity:0.88;
+}
+
+.begin-btn{
+    margin-top:50px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    padding:18px 44px;
+    border-radius:999px;
+    border:1px solid rgba(212,175,55,0.5);
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(18px);
+    color:var(--champagne);
+    text-decoration:none;
+    font-size:1rem;
+    letter-spacing:1px;
+    transition:0.4s ease;
+    box-shadow:0 0 40px rgba(212,175,55,0.12);
+}
+
+.begin-btn:hover{
+    transform:translateY(-4px) scale(1.02);
+    box-shadow:0 0 60px rgba(212,175,55,0.35);
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:80px;
+}
+
+.section-title h2{
+    font-size:4rem;
+    color:var(--champagne);
+    margin-bottom:15px;
+}
+
+.section-title p{
+    max-width:700px;
+    margin:auto;
+    opacity:0.7;
+    line-height:1.8;
+}
+
+.reasons-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:28px;
+}
+
+.reason-card{
+    position:relative;
+    padding:35px;
+    border-radius:28px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(212,175,55,0.2);
+    backdrop-filter:blur(18px);
+    overflow:hidden;
+    transition:0.45s ease;
+}
+
+.reason-card::before{
+    content:"✦";
+    position:absolute;
+    top:20px;
+    right:20px;
+    color:rgba(212,175,55,0.35);
+    font-size:1.3rem;
+}
+
+.reason-card:hover{
+    transform:translateY(-10px);
+    border-color:rgba(212,175,55,0.6);
+    box-shadow:0 20px 50px rgba(0,0,0,0.45);
+}
+
+.reason-number{
+    font-size:0.9rem;
+    letter-spacing:3px;
+    color:var(--gold);
+    margin-bottom:20px;
+}
+
+.reason-card h3{
+    font-size:2rem;
+    margin-bottom:18px;
+    color:var(--champagne);
+}
+
+.reason-card p{
+    line-height:1.9;
+    opacity:0.82;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:24px;
+}
+
+.photo{
+    position:relative;
+    overflow:hidden;
+    border-radius:24px;
+    transform:rotate(calc(var(--r) * 1deg));
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.08);
+    transition:0.5s ease;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:0.7s ease;
+}
+
+.photo:hover{
+    transform:scale(1.03) rotate(0deg);
+    box-shadow:0 25px 60px rgba(0,0,0,0.45);
+}
+
+.photo:hover img{
+    transform:scale(1.08);
+}
+
+.photo::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,0.45), transparent);
+}
+
+.quotes{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:28px;
+}
+
+.quote-card{
+    padding:40px;
+    border-radius:28px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter:blur(18px);
+    transition:0.4s ease;
+}
+
+.quote-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(212,175,55,0.35);
+}
+
+.quote-card p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:2rem;
+    line-height:1.4;
+    color:var(--champagne);
+}
+
+.final{
+    text-align:center;
+    padding-bottom:180px;
+}
+
+.final p{
+    max-width:850px;
+    margin:40px auto;
+    line-height:2;
+    font-size:1.1rem;
+    opacity:0.82;
+}
+
+.final-btn{
+    display:inline-flex;
+    padding:18px 48px;
+    border-radius:999px;
+    text-decoration:none;
+    color:var(--champagne);
+    border:1px solid rgba(212,175,55,0.4);
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(16px);
+    transition:0.4s ease;
+}
+
+.final-btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 45px rgba(212,175,55,0.3);
+}
+
+.music-btn{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    border:1px solid rgba(212,175,55,0.45);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(18px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:999;
+    transition:0.4s ease;
+    box-shadow:0 0 30px rgba(212,175,55,0.12);
+}
+
+.music-btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 50px rgba(212,175,55,0.35);
+}
+
+.music-icon{
+    width:24px;
+    height:24px;
+    fill:var(--champagne);
+}
+
+.wave{
+    position:absolute;
+    display:flex;
+    gap:3px;
+    bottom:14px;
+}
+
+.wave span{
+    width:3px;
+    height:10px;
+    background:var(--gold);
+    border-radius:20px;
+    animation:wave 1s infinite ease-in-out;
+    opacity:0;
+}
+
+.music-btn.playing .wave span{
+    opacity:1;
+}
+
+.wave span:nth-child(2){
+    animation-delay:0.15s;
+}
+
+.wave span:nth-child(3){
+    animation-delay:0.3s;
+}
+
+.sparkle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    opacity:0.5;
+    animation:sparkle 5s linear infinite;
+}
+
+@keyframes wave{
+    0%,100%{
+        height:8px;
+    }
+    50%{
+        height:18px;
+    }
+}
+
+@keyframes sparkle{
+    0%{
+        transform:translateY(0);
+        opacity:0;
+    }
+    50%{
+        opacity:0.8;
+    }
+    100%{
+        transform:translateY(-120px);
+        opacity:0;
+    }
+}
+
+@keyframes floatGlow{
+    0%,100%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-25px);
+    }
+}
+
+.fade-up{
+    opacity:0;
+    transform:translateY(30px);
+    transition:1s ease;
+}
+
+.fade-up.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:768px){
+
+    section{
+        padding:100px 7%;
+    }
+
+    .hero h1{
+        font-size:4rem;
+    }
+
+    .section-title h2{
+        font-size:3rem;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="sparkle" style="top:80%;left:10%;"></div>
+<div class="sparkle" style="top:70%;left:70%;"></div>
+<div class="sparkle" style="top:85%;left:45%;"></div>
+
+<section class="hero">
+
+    <div class="hero-content fade-up">
+        <h1>21 Reasons Why I Love You</h1>
+
+        <p>
+            Every memory with you became my favorite place.
+        </p>
+
+        <a href="#reasons" class="begin-btn">
+            Begin
+        </a>
+    </div>
+
+</section>
+
+<section id="reasons">
+
+    <div class="section-title fade-up">
+        <h2>21 Reasons</h2>
+        <p>
+            Replace every paragraph below with your own memories, moments,
+            inside jokes, confessions, and emotions.
+        </p>
+    </div>
+
+    <div class="reasons-grid">
+
+        <!-- 21 CARDS -->
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">01</div>
+            <h3>Your Presence</h3>
+            <p>You made ordinary moments feel cinematic and unforgettable.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">02</div>
+            <h3>Your Smile</h3>
+            <p>The kind of smile that quietly fixes the worst days.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">03</div>
+            <h3>Your Voice</h3>
+            <p>Every conversation with you became something I replay in my mind.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">04</div>
+            <h3>Your Energy</h3>
+            <p>You changed the atmosphere of every place just by being there.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">05</div>
+            <h3>Your Heart</h3>
+            <p>You care deeply even when nobody notices it.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">06</div>
+            <h3>Your Eyes</h3>
+            <p>They always made me feel understood without words.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">07</div>
+            <h3>Your Laugh</h3>
+            <p>The soundtrack behind my favorite memories.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">08</div>
+            <h3>Your Comfort</h3>
+            <p>You became the safest feeling I have ever known.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">09</div>
+            <h3>Your Chaos</h3>
+            <p>Even your imperfections feel beautiful to me.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">10</div>
+            <h3>Your Loyalty</h3>
+            <p>You stayed genuine in a world full of temporary people.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">11</div>
+            <h3>Your Kindness</h3>
+            <p>The way you treat people says everything about you.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">12</div>
+            <h3>Your Attention</h3>
+            <p>You remember details nobody else would ever notice.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">13</div>
+            <h3>Your Support</h3>
+            <p>You believed in me during moments I doubted myself.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">14</div>
+            <h3>Your Warmth</h3>
+            <p>You make silence feel peaceful instead of empty.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">15</div>
+            <h3>Your Randomness</h3>
+            <p>The unpredictable little moments became my favorites.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">16</div>
+            <h3>Your Honesty</h3>
+            <p>You always gave me something real to hold onto.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">17</div>
+            <h3>Your Mind</h3>
+            <p>I could listen to your thoughts for hours.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">18</div>
+            <h3>Your Soul</h3>
+            <p>You carry a softness that the world desperately needs.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">19</div>
+            <h3>Your Love</h3>
+            <p>You changed the way I understand affection completely.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">20</div>
+            <h3>Your Existence</h3>
+            <p>The universe became brighter after meeting you.</p>
+        </div>
+
+        <div class="reason-card fade-up">
+            <div class="reason-number">21</div>
+            <h3>Everything</h3>
+            <p>Because somehow, every version of life feels better with you in it.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <div class="section-title fade-up">
+        <h2>Our Memories</h2>
+    </div>
+
+    <div class="gallery">
+
+        <!-- Replace image paths -->
+
+        <div class="photo fade-up" style="--r:-2;">
+            <img src="images/photo1.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:2;">
+            <img src="images/photo2.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:-3;">
+            <img src="images/photo3.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:1;">
+            <img src="images/photo4.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:-2;">
+            <img src="images/photo5.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:3;">
+            <img src="images/photo6.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:-1;">
+            <img src="images/photo7.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:2;">
+            <img src="images/photo8.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:-3;">
+            <img src="images/photo9.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:1;">
+            <img src="images/photo10.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:-2;">
+            <img src="images/photo11.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:2;">
+            <img src="images/photo12.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:-1;">
+            <img src="images/photo13.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:3;">
+            <img src="images/photo14.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:-2;">
+            <img src="images/photo15.jpg">
+        </div>
+
+        <div class="photo fade-up" style="--r:2;">
+            <img src="images/photo16.jpg">
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <div class="section-title fade-up">
+        <h2>Words I’ll Always Mean</h2>
+    </div>
+
+    <div class="quotes">
+
+        <div class="quote-card fade-up">
+            <p>
+                “You became the calm in every storm I survived.”
+            </p>
+        </div>
+
+        <div class="quote-card fade-up">
+            <p>
+                “Some people feel like home. You feel like every version of it.”
+            </p>
+        </div>
+
+        <div class="quote-card fade-up">
+            <p>
+                “Loving you never felt temporary.”
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="final">
+
+    <div class="section-title fade-up">
+        <h2>Forever Starts Here</h2>
+    </div>
+
+    <p class="fade-up">
+        No matter where life moves us, every memory with you
+        will remain stitched into who I am. Thank you for every
+        laugh, every late-night conversation, every drive,
+        every glance, every small moment that quietly became
+        unforgettable.
+    </p>
+
+    <a href="#" class="final-btn fade-up">
+        Forever Starts Here
+    </a>
+
+</section>
+
+<button class="music-btn" id="musicBtn">
+
+    <svg class="music-icon" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"></path>
+    </svg>
+
+    <div class="wave">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+</button>
+
+<audio id="audio" loop>
+    <!-- Replace with your uploaded audio -->
+    <source src="505.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+});
+
+document.querySelectorAll('.fade-up').forEach(el=>{
+    observer.observe(el);
+});
+
+const audio = document.getElementById("audio");
+const musicBtn = document.getElementById("musicBtn");
+
+let playing = false;
+
+musicBtn.addEventListener("click", async () => {
+
+    if(!playing){
+
+        audio.volume = 0;
+        await audio.play();
+
+        let fade = setInterval(() => {
+            if(audio.volume < 0.95){
+                audio.volume += 0.05;
+            }else{
+                clearInterval(fade);
+            }
+        },100);
+
+        musicBtn.classList.add("playing");
+
+        musicBtn.innerHTML = `
+        <svg class="music-icon" viewBox="0 0 24 24">
+            <path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>
+        </svg>
+        <div class="wave">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        `;
+
+        playing = true;
+
+    } else {
+
+        audio.pause();
+
+        musicBtn.classList.remove("playing");
+
+        musicBtn.innerHTML = `
+        <svg class="music-icon" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"></path>
+        </svg>
+        <div class="wave">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        `;
+
+        playing = false;
+    }
+
+});
+
+window.addEventListener("scroll", () => {
+
+    document.querySelectorAll(".photo").forEach((img,index)=>{
+        const speed = (window.scrollY * 0.01);
+        img.style.transform = `translateY(${speed}px) rotate(${(index%2===0?-2:2)}deg)`;
+    });
+
+});
+
+</script>
+
+</body>
+</html>
